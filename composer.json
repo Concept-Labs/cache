@@ -1,7 +1,7 @@
 {
     "name": "concept-labs/cache",
     "description": "(C)oncept-Labs Cache",
-    "keywords": ["php","cache","psr","psr-6"],
+    "keywords": ["php","event dispatcher","psr","psr-14"],
     "license": "MIT",
     "authors": [
         {
@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0.0",
-        "psr/cache": "^3.0"
+        "php": ">=8.0.0"
     },
     "autoload": {
         "psr-4": {
@@ -24,7 +23,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Cl\\Cache\\Test\\": "src/Cache/test/"
+            "Cl\\Cache\\Test\\": "src/test/"
         }
     }
 

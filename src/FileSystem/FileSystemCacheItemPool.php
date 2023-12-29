@@ -19,16 +19,13 @@ class FileSystemCacheItemPool extends CacheItemPoolAbstract
             $key = $item->getKey();
             $value = $item->get();
 
-            // Serialize the cache item value
             $serializedValue = serialize($value);
 
-            // Save to the filesystem (assuming a directory structure)
             $filePath = $this->getCacheFilePath($key);
             file_put_contents($filePath, $serializedValue);
 
             return true;
         } catch (\Throwable $e) {
-            // Handle exceptions, log, or rethrow as needed
             return false;
         }
     }
@@ -66,7 +63,6 @@ class FileSystemCacheItemPool extends CacheItemPoolAbstract
             //@TODO Handle exceptions, log, or rethrow as needed
             
         }
-        // If the file doesn't exist, return a new cache item
         return new FileSystemCacheItem($key);
     }
 

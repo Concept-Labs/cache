@@ -6,7 +6,7 @@ trait FileSystemCacheItemPoolConfigTrait
 
     protected function getBasePath()
     {
-        return '/path/to/cache/';
+        return '/tmp/';
     }
 
     protected function getCacheFilePath(string|\Stringable|callable $key)
