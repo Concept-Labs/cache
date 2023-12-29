@@ -26,6 +26,6 @@
         "psr-4": {
             "Cl\\Cache\\Test\\": "src/Cache/test/"
         }
-    },
+    }
 
 }
