@@ -19,8 +19,8 @@ use \Psr\Cache\CacheItemPoolInterface as PsrCacheItemPoolInterface;
 interface CacheItemPoolInterface extends PsrCacheItemPoolInterface
 {
 
-    public function freeze(): CacheItemPoolInterface;
+    public function freeze(): PsrCacheItemPoolInterface;
 
-    public function unfreeze(): CacheItemPoolInterface;
+    public function unfreeze(): PsrCacheItemPoolInterface;
     
 }

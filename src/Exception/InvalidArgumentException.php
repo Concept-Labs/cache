@@ -16,7 +16,7 @@ namespace Cl\Cache\Exception;
 /**
  * {@inheritDoc}
  */
-class InvalidArgumentException extends \InvalidArgumentException 
+class InvalidArgumentException extends CacheException 
     implements InvalidArgumentExceptionInterface
 {
 }

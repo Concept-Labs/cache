@@ -3,11 +3,9 @@
 namespace Cl\Cache\Trait\CacheItem;
 
 use Cl\Cache\Trait\CacheKeyNormalizerTrait;
-use Cl\Object\Instance\FromArrayTrait;
 
 trait CacheItemTrait
 {
-    use FromArrayTrait;
     use CacheKeyNormalizerTrait;
     use CacheItemPropertyAccessTrait;
     use CacheItemExpirationTrait;

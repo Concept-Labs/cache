@@ -42,7 +42,6 @@ class InMemoryCacheItemPoolTest extends TestCase
         $this->assertInstanceOf(CacheItemInterface::class, $cacheItem);
         $this->assertInstanceOf(\Psr\Cache\CacheItemInterface::class, $cacheItem);
 
-        // Додайте тести для інших методів CacheItemInterface
     }
 
     public function testGetItem()
@@ -52,7 +51,6 @@ class InMemoryCacheItemPoolTest extends TestCase
 
         $this->assertInstanceOf(CacheItemInterface::class, $item);
         $this->assertEquals($key, $item->getKey());
-        // Додайте інші тести за необхідністю
     }
 
     public function testGetItems()
@@ -64,8 +62,7 @@ class InMemoryCacheItemPoolTest extends TestCase
             $this->assertInstanceOf(CacheItemInterface::class, $item);
             $this->assertTrue(in_array($item->getKey(), $keys));
         }
-        // Додайте інші тести за необхідністю
+
     }
 
-    // Додайте тести для інших методів та обробки виключень
 }

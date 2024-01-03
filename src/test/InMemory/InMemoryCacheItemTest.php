@@ -73,7 +73,7 @@ class InMemoryCacheItemTest extends TestCase
     public function testExceptionOnInvalidKey()
     {
         $this->expectException(Cl\Cache\Exception\InvalidArgumentException::class);
-        new InMemoryCacheItem(['invalid_key'], 'value');
+        new InMemoryCacheItem('invalid_key', 'value');
     }
 
     public function testExceptionOnInvalidValue()
