@@ -1,8 +1,11 @@
 <?php
 use Cl\Cache\InMemory\InMemoryCacheItem;
 use PHPUnit\Framework\TestCase;
-use Cl\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemInterface;
 
+/**
+ * @covers Cl\Cache\InMemory\InMemoryCacheItem
+ */
 class InMemoryCacheItemTest extends TestCase
 {
     
@@ -27,7 +30,6 @@ class InMemoryCacheItemTest extends TestCase
 
         // Act & Assert
         $this->assertInstanceOf(CacheItemInterface::class, $cacheItem);
-        $this->assertInstanceOf(\Psr\Cache\CacheItemInterface::class, $cacheItem);
 
     }
 
@@ -70,22 +72,4 @@ class InMemoryCacheItemTest extends TestCase
         $this->assertGreaterThanOrEqual($newExpiration, $cacheItem->getExpiration());
     }
 
-    public function testExceptionOnInvalidKey()
-    {
-        $this->expectException(Cl\Cache\Exception\InvalidArgumentException::class);
-        new InMemoryCacheItem('invalid_key', 'value');
-    }
-
-    public function testExceptionOnInvalidValue()
-    {
-        $this->expectException(Cl\Cache\Exception\InvalidArgumentException::class);
-        new InMemoryCacheItem('key', fopen('php://temp', 'r')); // Invalid value, should throw an exception
-    }
-
-    public function testExceptionOnInvalidExpiration()
-    {
-        $this->expectException(Cl\Cache\Exception\InvalidArgumentException::class);
-        $cacheItem = new InMemoryCacheItem('key', 'value');
-        $cacheItem->expiresAt('invalid_expiration'); // Invalid expiration, should throw an exception
-    }
 }

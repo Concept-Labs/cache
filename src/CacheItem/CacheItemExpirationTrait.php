@@ -1,5 +1,6 @@
 <?php
-namespace Cl\Cache\Trait\CacheItem;
+declare(strict_types=1);
+namespace Cl\Cache\CacheItem;
 
 use Cl\Cache\Exception\InvalidArgumentException;
 

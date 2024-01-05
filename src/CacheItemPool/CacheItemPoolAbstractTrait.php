@@ -1,19 +1,19 @@
 <?php
-namespace Cl\Cache\Trait\CacheItemPool;
+namespace Cl\Cache\CacheItemPool;
 
-use Cl\Cache\CacheItemInterface;
-use Psr\Cache\CacheItemInterface as PsrCacheItemInterface;
+
+use Psr\Cache\CacheItemInterface;
 
 trait CacheItemPoolAbstractTrait
 {
     /**
      * Save a cache item to the pool.
      *
-     * @param PsrCacheItemInterface $item The cache item to save.
+     * @param CacheItemInterface $item The cache item to save.
      *
      * @return bool True on success, false on failure.
      */
-    abstract public function save(PsrCacheItemInterface $item): bool;
+    abstract public function save(CacheItemInterface $item): bool;
 
     /**
      * Check if a cache item with the given key exists in the pool.
@@ -27,11 +27,11 @@ trait CacheItemPoolAbstractTrait
     /**
      * Retrieve a cache item from the pool by key.
      *
-     * @param string|\Stringable $key The key of the cache item to retrieve.
+     * @param $key The key of the cache item to retrieve.
      *
      * @return CacheItemInterface The retrieved cache item.
      */
-    abstract public function getItem(string|\Stringable $key): CacheItemInterface;
+    abstract public function getItem($key): CacheItemInterface;
 
     /**
      * Delete a cache item from the pool by key.

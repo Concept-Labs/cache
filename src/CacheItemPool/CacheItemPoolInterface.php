@@ -9,18 +9,16 @@
  * @license   MIT 
  * @link      g
  */
-namespace Cl\Cache;
+namespace Cl\Cache\CacheItemPool;
 
 use \Psr\Cache\CacheItemPoolInterface as PsrCacheItemPoolInterface;
+use Cl\Able\Freezable\FreezableInterface;
 
 /**
  * {@inheritDoc}
  */
-interface CacheItemPoolInterface extends PsrCacheItemPoolInterface
+interface CacheItemPoolInterface extends PsrCacheItemPoolInterface, FreezableInterface
 {
 
-    public function freeze(): PsrCacheItemPoolInterface;
-
-    public function unfreeze(): PsrCacheItemPoolInterface;
     
 }

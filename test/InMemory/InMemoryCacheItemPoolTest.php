@@ -1,10 +1,13 @@
 <?php
 use Cl\Cache\InMemory\InMemoryCacheItem;
 use PHPUnit\Framework\TestCase;
-use Cl\Cache\CacheItemPoolInterface;
+use Cl\Cache\CacheItemPool\CacheItemPoolInterface;
 use Cl\Cache\InMemory\InMemoryCacheItemPool;
-use Cl\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemInterface;
 
+/**
+ * @covers Cl\Cache\InMemory\InMemoryCacheItemPool
+ */
 class InMemoryCacheItemPoolTest extends TestCase
 {
     protected CacheItemPoolInterface $cache;

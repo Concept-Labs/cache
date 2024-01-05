@@ -1,9 +1,8 @@
 <?php
 namespace Cl\Cache\InMemory;
 
-use Cl\Cache\CacheItemInterface;
-use Cl\Cache\CacheItemPoolAbstract;
-use Psr\Cache\CacheItemInterface as PsrCacheItemInterface;
+use Cl\Cache\CacheItem\CacheItemInterface;
+use Cl\Cache\CacheItemPool\CacheItemPoolAbstract;
 
 /**
  * Class with implementation 
@@ -22,9 +21,11 @@ class InMemoryCacheItemPool extends CacheItemPoolAbstract
     /**
      * @inheritDoc
      */
-    public function save(PsrCacheItemInterface $item): bool
+    public function write(array $items): bool
     {
-        $this->cache[$item->getKey()] = clone $item;
+        foreach ($items as $item) {
+            $this->cache[$item->getKey()] = clone $item;
+        }
         return true;
     }
 
@@ -34,20 +35,18 @@ class InMemoryCacheItemPool extends CacheItemPoolAbstract
     public function hasItem(string|\Stringable $key): bool
     {
         return array_key_exists($this->normalizeKey($key), $this->cache);
-        // || $this->hasDeferred($cacheKey);
     }
 
     /**
      * @inheritDoc
      */
-    public function getItem(string|\Stringable $key, mixed $defaultValue = null): CacheItemInterface
+    public function getItem($key): CacheItemInterface
     {
         $cacheKey = $this->normalizeKey($key);
         return match (true) {
-            $this->hasDeferred($cacheKey) => clone $this->deferred[$cacheKey],
             $this->hasItem($key) => clone $this->cache[$cacheKey],
             //@TODO
-            default => (new InMemoryCacheItem($cacheKey, $defaultValue))
+            default => (new InMemoryCacheItem($cacheKey))
         };
     }
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * PSR-6 CacheItemInterface
  * 
@@ -9,7 +10,8 @@
  * @license   MIT 
  * @link      g
  */
-namespace Cl\Cache;
+
+namespace Cl\Cache\CacheItem;
 
 use \Psr\Cache\CacheItemInterface as PsrCacheItemInterface;
 

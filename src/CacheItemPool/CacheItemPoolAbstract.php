@@ -1,26 +1,24 @@
 <?php
-namespace Cl\Cache;
+namespace Cl\Cache\CacheItemPool;
 
-use Cl\Cache\CacheItemPoolInterface as ClCacheItemPoolInterface;
-use Cl\Cache\Trait\CacheItem\CacheItemKeyValidatorTrait;
-use Cl\Cache\Trait\CacheItemPool\CacheItemPoolAbstractTrait;
-use Cl\Cache\Trait\CacheItemPool\CacheItemPoolDeferredTrait;
-use Cl\Cache\Trait\CacheKeyNormalizerTrait;
-use Psr\Cache\CacheItemPoolInterface;
+
+use Cl\Cache\CacheItem\CacheItemKeyValidatorTrait;
+use Cl\Cache\CacheItem\CacheKeyNormalizerTrait;
 
 
 /**
  * Abstract class for implementing 
  * the ClCacheItemPoolInterface (Psr\Cache\CacheItemPoolInterface) interface.
  */
-abstract class CacheItemPoolAbstract implements ClCacheItemPoolInterface
+abstract class CacheItemPoolAbstract implements CacheItemPoolInterface
 {
     use CacheItemPoolAbstractTrait;
-    use CacheItemPoolDeferredTrait;
+    use CacheItemPoolDeferTrait;
     use CacheKeyNormalizerTrait;
     use CacheItemKeyValidatorTrait;
+    use CacheItemPoolFreezable;
 
-    protected bool $frozen = false;
+  
 
     /**
      * Get cache items by their keys.
@@ -32,8 +30,9 @@ abstract class CacheItemPoolAbstract implements ClCacheItemPoolInterface
     public function getItems(array $keys = []): iterable
     {   
         foreach ($keys as $key) {
-            yield $this->validateKey($key)
-                ->getItem($key);
+            if ($this->validateKey($key)) {
+                yield $this->getItem($key);
+            }
         }
     }
 
@@ -46,25 +45,11 @@ abstract class CacheItemPoolAbstract implements ClCacheItemPoolInterface
      */
     public function deleteItems(array $keys): bool
     {
-
         return array_reduce(
             $keys,
             fn($carry, $key) 
                 => $carry && $this->validateKey($key) && $this->deleteItem($key),
             true
         );
-    }
-
-    //@TODO implement freeze/unfreeze
-    public function freeze(): CacheItemPoolInterface
-    {
-        $this->frozen = true;
-        return $this;
-    }
-
-    public function unfreeze(): CacheItemPoolInterface
-    {
-        $this->frozen = false;
-        return $this;
     }
 }

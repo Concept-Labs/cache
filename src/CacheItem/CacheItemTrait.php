@@ -1,8 +1,7 @@
 <?php
+declare(strict_types=1);
+namespace Cl\Cache\CacheItem;
 
-namespace Cl\Cache\Trait\CacheItem;
-
-use Cl\Cache\Trait\CacheKeyNormalizerTrait;
 
 trait CacheItemTrait
 {

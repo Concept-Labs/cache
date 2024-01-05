@@ -1,8 +1,6 @@
 <?php
-
-namespace Cl\Cache;
-
-use Cl\Cache\Trait\CacheItem\CacheItemTrait;
+declare(strict_types=1);
+namespace Cl\Cache\CacheItem;
 
 /**
  * Abstract class for implementing the CacheItemInterface interface.
